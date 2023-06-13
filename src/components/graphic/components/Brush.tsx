@@ -5,7 +5,7 @@ import {
   VictoryLine,
 } from 'victory';
 import { InteractiveGraphic } from '../../../types';
-import { SCALE } from '../config';
+import { FIELDS, SCALE } from '../config';
 import { BRUSH_STYLES, LINE_STYLES } from '../styles';
 
 export default function Brush({
@@ -34,7 +34,7 @@ export default function Brush({
           tickLabels: { fill: 'transparent' },
         }}
       />
-      <VictoryLine style={LINE_STYLES} data={data} x='time' y='value' />
+      <VictoryLine style={LINE_STYLES} data={data} x={FIELDS.x.fieldName} y={FIELDS.y.fieldName}  />
     </VictoryChart>
   );
 }

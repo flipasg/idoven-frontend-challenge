@@ -14,10 +14,8 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Grid container width='100vw' height='100vh'>
-        <Header />
-        <Dashboard />
-      </Grid>
+      <Header />
+      <Dashboard />
     </ThemeProvider>
   );
 }

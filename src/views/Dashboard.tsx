@@ -1,15 +1,16 @@
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { Grid, IconButton } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
+import NavigationButton from '../components/buttons/NavigationButton';
 import Graphic from '../components/graphic/Graphic';
+import { DEFAULT_DOMAIN, DOMAIN_STEP } from '../config';
 import useMeasures from '../hooks/useMeasures';
 import { Domain } from '../types';
-import { DEFAULT_DOMAIN, DOMAIN_STEP } from '../config';
 
 export default function Dashboard() {
   const [domain, setDomain] = useState<Domain>(DEFAULT_DOMAIN);
-  const { measures, fetch } = useMeasures();
+  const { measures, fetch, loading } = useMeasures();
 
   const nextDomain = () => {
     const to = domain[1];
@@ -28,36 +29,20 @@ export default function Dashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [domain]);
   return (
-    <Grid
-      container
-      justifyContent='space-evenly'
-      height='100%'
-    >
-      <Grid
-        container
-        item
-        alignItems={'center'}
-        maxWidth={50}
-        sx={{ flex: '0 0 50px' }}
-      >
-        <IconButton onClick={prevDomain}>
-          <KeyboardArrowLeftIcon />
-        </IconButton>
+    <Container maxWidth='xl'>
+      <Grid container justifyContent='center' maxHeight='100%'>
+        <NavigationButton
+          onClick={prevDomain}
+          icon={<KeyboardArrowLeftIcon />}
+        />
+        <Grid item xs={11} maxHeight='100%' flexGrow={1}>
+          <Graphic data={measures} domain={domain} loading={loading} />
+        </Grid>
+        <NavigationButton
+          onClick={nextDomain}
+          icon={<KeyboardArrowRightIcon />}
+        />
       </Grid>
-      <Grid item xs={10} height='100%' flexGrow={1}>
-        <Graphic data={measures} domain={domain} />
-      </Grid>
-      <Grid
-        container
-        item
-        alignItems={'center'}
-        maxWidth={50}
-        sx={{ flex: '0 0 50px' }}
-      >
-        <IconButton onClick={nextDomain}>
-          <KeyboardArrowRightIcon />
-        </IconButton>
-      </Grid>
-    </Grid>
+    </Container>
   );
 }

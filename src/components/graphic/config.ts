@@ -5,3 +5,10 @@ export const SCALE: VictoryCommonThemeProps['scale'] = {
   y: 'linear',
 };
 
+export const FIELDS = {
+  x: {
+    fieldName: 'time',
+    unit: 'ms',
+  },
+  y: { fieldName: 'value', unit: 'uV' },
+};
