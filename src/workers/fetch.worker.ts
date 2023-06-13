@@ -11,6 +11,7 @@ const executeFetch = (url: string) => {
     worker: true,
     fastMode: true,
     dynamicTyping: true,
+    chunkSize: 40000,
     step: (results) => {
       self.postMessage(results);
     },

@@ -1,10 +1,31 @@
-import { useState } from 'react';
-import { Measure } from '../types';
-import { DATA_URL } from '../config';
+import { useContext, useEffect, useState } from 'react';
+import { Domain, Measure, MeasuresActionTypes } from '../types';
+import { DATA_URL, DOMAIN_STEP } from '../config';
+import MeasuresContext from '../context/MeasuresContext';
 
 export default function useMeasures() {
-  const [measures, setMeasures] = useState<Measure[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const { state, dispatch } = useContext(MeasuresContext);
+
+  const setLoading = (loading: boolean) => {
+    dispatch({
+      type: MeasuresActionTypes.SET_LOADING,
+      payload: loading,
+    });
+  };
+
+  const setMeasures = (measures: Measure[]) => {
+    dispatch({
+      type: MeasuresActionTypes.SET_MEASURES,
+      payload: measures,
+    });
+  };
+
+  const setDomain = (domain: Domain) => {
+    dispatch({
+      type: MeasuresActionTypes.SET_DOMAIN,
+      payload: domain,
+    });
+  };
 
   const fetch = ({ domain }: { domain: [number, number] }) => {
     const fetchWorker = new Worker(
@@ -36,10 +57,23 @@ export default function useMeasures() {
     };
   };
 
+  const nextDomain = () => {
+    const to = state.domain[1];
+    setDomain([to, to + DOMAIN_STEP]);
+  };
+
+  const prevDomain = () => {
+    const from = state.domain[0];
+    setDomain([from - DOMAIN_STEP, from]);
+  };
+
+  useEffect(() => {
+    fetch({ domain: state.domain });
+  }, [state.domain]);
+
   return {
-    fetch,
-    measures,
-    loading,
-    error: null,
+    ...state,
+    nextDomain,
+    prevDomain,
   };
 }
