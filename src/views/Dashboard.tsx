@@ -2,7 +2,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { Grid, IconButton } from '@mui/material';
 import { useEffect, useState } from 'react';
-import Graphic from '../components/Graphic';
+import Graphic from '../components/graphic/Graphic';
 import useMeasures from '../hooks/useMeasures';
 import { Domain } from '../types';
 import { DEFAULT_DOMAIN, DOMAIN_STEP } from '../config';
@@ -30,9 +30,8 @@ export default function Dashboard() {
   return (
     <Grid
       container
-      alignContent={'center'}
       justifyContent='space-evenly'
-      height='calc(100% - 50px)'
+      height='100%'
     >
       <Grid
         container
@@ -45,7 +44,7 @@ export default function Dashboard() {
           <KeyboardArrowLeftIcon />
         </IconButton>
       </Grid>
-      <Grid item xs={10} height='80%' flexGrow={1}>
+      <Grid item xs={10} height='100%' flexGrow={1}>
         <Graphic data={measures} domain={domain} />
       </Grid>
       <Grid
