@@ -1,18 +1,13 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import Header from './components/Header';
 import { MeasuresContextProvider } from './context/MeasuresContext';
 import Dashboard from './views/Dashboard';
+import theme from './theme';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-
-function App() {
+export default function App() {
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
       <MeasuresContextProvider>
@@ -21,5 +16,3 @@ function App() {
     </ThemeProvider>
   );
 }
-
-export default App;
