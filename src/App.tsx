@@ -1,6 +1,6 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import Header from './components/Header';
+import Header from './components/layout/Header';
 import { MeasuresContextProvider } from './context/MeasuresContext';
 import Dashboard from './views/Dashboard';
 import theme from './theme';
