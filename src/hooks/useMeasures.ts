@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
-import { Domain, Measure, MeasuresActionTypes } from '../types';
+import { useContext, useEffect } from 'react';
 import { DATA_URL, DOMAIN_STEP } from '../config';
 import MeasuresContext from '../context/MeasuresContext';
+import { Domain, Measure, MeasuresActionTypes } from '../types';
 
 export default function useMeasures() {
   const { state, dispatch } = useContext(MeasuresContext);
