@@ -22,7 +22,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-papaparse": "^4.1.0",
-    "recharts": "^2.6.2",
     "victory": "^36.6.11"
   },
   "devDependencies": {
