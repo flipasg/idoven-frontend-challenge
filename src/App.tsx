@@ -1,9 +1,8 @@
-import { Grid } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Header from './components/Header';
-import Dashboard from './views/Dashboard';
 import { MeasuresContextProvider } from './context/MeasuresContext';
+import Dashboard from './views/Dashboard';
 
 const darkTheme = createTheme({
   palette: {
