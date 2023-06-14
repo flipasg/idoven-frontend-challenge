@@ -69,6 +69,7 @@ export default function useMeasures() {
 
   useEffect(() => {
     fetch({ domain: state.domain });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.domain]);
 
   return {
